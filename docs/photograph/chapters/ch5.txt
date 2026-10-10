@@ -1,0 +1,63 @@
+WEBVTT
+
+00:00:00.300 --> 00:00:02.625
+We can't build a telescope that big.
+
+00:00:02.625 --> 00:00:05.150
+But we can build one
+that is mostly missing.
+
+00:00:05.712 --> 00:00:11.634
+In April 2017, radio observatories in
+Hawaii, Arizona, Mexico, Chile, Spain,
+
+00:00:11.634 --> 00:00:16.534
+and at the South Pole, joined to
+form the Event Horizon Telescope.
+
+00:00:16.534 --> 00:00:23.334
+Each recorded radio waves from the sky,
+stamped with the time from an atomic clock.
+
+00:00:23.907 --> 00:00:28.880
+Petabytes of recordings were flown
+on hard drives to supercomputers,
+
+00:00:28.880 --> 00:00:32.105
+which combined the signals
+from every pair of telescopes.
+
+00:00:32.499 --> 00:00:35.437
+Each pair measures one
+ripple of the image:
+
+00:00:35.437 --> 00:00:40.749
+a pattern of light and dark stripes,
+with a particular spacing and direction.
+
+00:00:40.749 --> 00:00:44.849
+Add together enough ripples, with
+the right strengths and offsets,
+
+00:00:44.849 --> 00:00:46.774
+and you can build any image.
+
+00:00:46.774 --> 00:00:49.724
+That is the idea behind
+the Fourier transform.
+
+00:00:50.481 --> 00:00:53.667
+Telescopes far apart capture fine ripples.
+
+00:00:53.667 --> 00:00:56.805
+Telescopes close together
+capture broad ones.
+
+00:00:56.805 --> 00:01:01.942
+And as the Earth turns, every pair sweeps
+through new spacings and directions,
+
+00:01:01.942 --> 00:01:05.380
+tracing arcs through the
+space of all possible ripples.
+

@@ -1,0 +1,453 @@
+<title>How to Hear Two Black Holes Collide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Layout: the observatory notebook again (sibling of "How to Photograph a Black Hole"):
+   a time-frequency picture of the chirp opens the page, then numbered plates follow the
+   analysis from raw strain to a detection. Charts sit directly on the ground, hairline axes. */
+:root {
+  --void: #06080d;
+  --panel: #0c1119;
+  --rule: #1d2532;
+  --grid: #161d28;
+  --ink: #ece6da;
+  --dim: #8f97a7;
+  --amber: #ffb547;
+  --cyan: #63d4ff;
+  --h1: #3987e5;        /* validated categorical slot 1 (dark) */
+  --l1: #d95926;        /* validated categorical slot 2 (dark) */
+  --f-display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --f-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+html { background: var(--void); }
+body { background: var(--void); color: var(--ink); font: 400 1.02rem/1.6 var(--f-body); padding-inline: max(16px, 3vw); padding-block: 0 48px; }
+a { color: var(--cyan); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, canvas:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.wrap { max-width: 1180px; margin-inline: auto; }
+header.top { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; justify-content: space-between; padding-block: 18px 14px; border-bottom: 1px solid var(--rule); }
+.mark { font-family: var(--f-display); font-size: 1.35rem; }
+nav.sec { display: flex; flex-wrap: wrap; gap: 4px 18px; font: 500 0.84rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: 0.08em; }
+nav.sec a { color: var(--dim); text-decoration: none; padding-block: 6px; }
+nav.sec a:hover { color: var(--ink); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.3rem, 5.4vw, 4.4rem); line-height: 1.02; }
+h2 { font-size: 1.9rem; line-height: 1.1; }
+.eyebrow { font: 500 0.84rem/1.3 var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); }
+.lede { max-width: 62ch; font-size: 1.08rem; margin: 0; }
+.note { font-size: 0.92rem; color: var(--dim); max-width: 70ch; margin: 0; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+section.plate { display: grid; gap: 22px; padding-block: 56px 8px; }
+.plate-head { display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; align-items: baseline; border-top: 1px solid var(--rule); padding-top: 18px; }
+.plate-head .num { font: 500 0.84rem/1 var(--f-mono); color: var(--dim); letter-spacing: 0.08em; }
+.plate-head p { grid-column: 2; margin: 0; max-width: 66ch; color: var(--dim); }
+
+.hero { display: grid; gap: 18px; padding-block: 30px 0; }
+.qbox { position: relative; border: 1px solid var(--rule); background: var(--panel); }
+.qbox canvas { display: block; width: 100%; aspect-ratio: 16 / 7; max-width: 100%; }
+.qlegend { display: flex; align-items: center; gap: 10px; font: 400 0.8rem/1 var(--f-mono); color: var(--dim); }
+.qlegend .ramp { width: 120px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, #0c1119, #6b3d12, #ffb547, #fff1d6); }
+.player { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
+.btn { font: 500 0.92rem/1 var(--f-body); color: var(--void); background: var(--amber); border: 0; border-radius: 999px; padding: 11px 18px; cursor: pointer; display: inline-flex; gap: 8px; align-items: center; }
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--rule); }
+.btn[aria-pressed="true"] { outline: 2px solid var(--amber); outline-offset: 2px; }
+.chip { font: 500 0.82rem/1 var(--f-mono); color: var(--dim); background: transparent; border: 1px solid var(--rule); padding: 9px 12px; border-radius: 999px; cursor: pointer; }
+.chip[aria-pressed="true"] { color: var(--void); background: var(--cyan); border-color: var(--cyan); }
+.row { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+
+.grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+figure.ch { margin: 0; display: grid; gap: 8px; min-width: 0; }
+figure.ch canvas { width: 100%; display: block; }
+figure.ch figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 14px; font-size: 0.88rem; color: var(--dim); }
+figure.ch figcaption b { color: var(--ink); font-weight: 700; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.84rem; color: var(--dim); }
+.legend i { display: inline-block; width: 16px; height: 2px; vertical-align: middle; margin-right: 6px; border-radius: 1px; }
+.tip { position: fixed; z-index: 10; pointer-events: none; background: #111824; border: 1px solid var(--rule); color: var(--ink); font: 400 0.8rem/1.45 var(--f-mono); padding: 7px 9px; border-radius: 6px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+.tile { border-top: 1px solid var(--rule); padding-top: 12px; display: grid; gap: 2px; }
+.tile .v { font: 500 2.1rem/1.1 var(--f-mono); font-variant-numeric: tabular-nums; }
+.tile .k { font-size: 0.86rem; color: var(--dim); }
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; padding: 9px 12px 9px 0; border-top: 1px solid var(--rule); vertical-align: top; }
+th { font: 500 0.78rem/1.3 var(--f-mono); color: var(--dim); text-transform: uppercase; letter-spacing: 0.06em; }
+td.v { font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.method { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; }
+.method ul { padding-left: 1.1em; margin: 0; display: grid; gap: 8px; }
+.method li, .method p { max-width: 64ch; }
+footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; color: var(--dim); font-size: 0.88rem; }
+@media (max-width: 860px) { .grid2, .method { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="mark">How to Hear Two Black Holes Collide</div>
+    <nav class="sec" aria-label="Sections"><a href="#listen">Listen</a><a href="#noise">Noise</a><a href="#search">Search</a><a href="#proof">Proof</a><a href="#method">Method</a></nav>
+  </header>
+
+  <div class="hero" id="listen">
+    <div class="eyebrow">GW150914 · found again in LIGO's public data</div>
+    <h1>How to Hear Two Black Holes Collide</h1>
+    <p class="lede">At 09:50:45 UTC on 14 September 2015, both LIGO detectors, 3,002 km apart in Washington and Louisiana, stretched and squeezed by about 4 × 10⁻¹⁸ m, a few hundredths of a proton's width. Two black holes had merged 1.3 billion light-years away. This page finds that signal again, starting from the raw recordings.</p>
+    <div class="qbox"><canvas id="q" aria-label="Time-frequency map of the Hanford data around the merger, showing the chirp rising from about 35 Hz to 250 Hz"></canvas></div>
+    <div class="row" style="justify-content: space-between;">
+      <div class="player">
+        <button class="btn" id="play-data">▶ Play the data</button>
+        <button class="btn ghost" id="play-tmpl">▶ Play the matched template</button>
+        <button class="chip" id="pitch" aria-pressed="true">pitch +400 Hz</button>
+      </div>
+      <div class="qlegend"><span>Hanford, whitened · energy</span><span class="ramp"></span></div>
+    </div>
+    <p class="note">The data clip is two seconds of whitened Hanford strain: mostly hiss, then a rising "whoop" in the last fifth of a second. Its natural pitch, 35 to 250 Hz, is low enough that small speakers lose it, so by default it is shifted up 400 Hz with a single-sideband modulation that keeps the shape of the chirp.</p>
+  </div>
+
+  <section class="plate" id="noise">
+    <div class="plate-head"><span class="num">I</span><h2>Buried in noise</h2><p>The raw strain is dominated by seismic and thermal noise at low frequencies, a hundred times larger than the signal. Dividing by the noise spectrum (whitening) and keeping 35–350 Hz reveals it.</p></div>
+    <div class="grid2">
+      <figure class="ch">
+        <canvas id="c-raw" height="300"></canvas>
+        <figcaption><b id="raw-title">Hanford strain, as recorded</b><span class="row"><button class="chip" id="t-white" aria-pressed="false">Whiten</button></span></figcaption>
+      </figure>
+      <figure class="ch">
+        <canvas id="c-asd" height="300"></canvas>
+        <figcaption><b>Noise spectra and the signal</b><span class="legend"><span><i style="background: var(--h1)"></i>Hanford</span><span><i style="background: var(--l1)"></i>Livingston</span><span><i style="background: var(--ink)"></i>signal, 2√f |h(f)|</span></span></figcaption>
+      </figure>
+    </div>
+    <p class="note">Amplitude spectral densities come from 1,004 (Hanford) and 956 (Livingston) eight-second stretches of the hour around the event, median-averaged. The sharp spikes are the 60 Hz power line, its harmonics and the violin modes of the mirror suspensions. Where the signal curve rises above the noise, the detectors could hear it.</p>
+  </section>
+
+  <section class="plate" id="search">
+    <div class="plate-head"><span class="num">II</span><h2>Searching with templates</h2><p>General relativity predicts the exact waveform for each pair of masses. Sliding each prediction along the data and measuring the match (a matched filter, the optimal detector for a known signal in Gaussian noise) turns 1,066 templates into a map of signal-to-noise ratio.</p></div>
+    <div class="grid2">
+      <figure class="ch">
+        <canvas id="c-bank" height="360" tabindex="0" aria-label="Template bank map: network SNR for each pair of masses. Click a cell to compare that template with the data."></canvas>
+        <figcaption><b>Network SNR across the bank</b><span>masses as seen at the detectors · click to compare</span></figcaption>
+      </figure>
+      <div style="display: grid; gap: 18px; min-width: 0;">
+        <figure class="ch">
+          <canvas id="c-match" height="210"></canvas>
+          <figcaption><b id="match-title">Hanford data vs best template</b><span class="legend"><span><i style="background: var(--h1)"></i>whitened data</span><span><i style="background: var(--ink)"></i>template</span></span></figcaption>
+        </figure>
+        <figure class="ch">
+          <canvas id="c-snr" height="160"></canvas>
+          <figcaption><b>Matched-filter SNR, best template</b><span class="legend"><span><i style="background: var(--h1)"></i>Hanford</span><span><i style="background: var(--l1)"></i>Livingston</span></span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="plate" id="proof">
+    <div class="plate-head"><span class="num">III</span><h2>Two detectors, one signal</h2><p>Noise in Washington knows nothing about noise in Louisiana. A real wave must reach both within the 10 ms light-travel time, with the shape the detectors' orientations allow.</p></div>
+    <div class="grid2">
+      <figure class="ch">
+        <canvas id="c-both" height="280"></canvas>
+        <figcaption><b>Whitened strain, Livingston shifted and flipped</b><span class="legend"><span><i style="background: var(--h1)"></i>Hanford</span><span><i style="background: var(--l1)"></i>Livingston +7.1 ms, inverted</span></span></figcaption>
+      </figure>
+      <figure class="ch">
+        <canvas id="c-bg" height="280"></canvas>
+        <figcaption><b>How loud can noise alone get?</b><span class="legend"><span><i style="background: #6c7484"></i>raw SNR</span><span><i style="background: #199e70"></i>after the χ² test</span></span></figcaption>
+      </figure>
+    </div>
+    <p class="note" id="bg-note"></p>
+    <div class="tiles" id="tiles"></div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Quantity</th><th>This analysis</th><th>LIGO and Virgo, published</th></tr></thead>
+        <tbody id="cmp"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="plate" id="method">
+    <div class="plate-head"><span class="num">IV</span><h2>How it was done</h2><p>About 200 lines of NumPy and SciPy, plus one call to a waveform model. The full pipeline runs in two minutes on a desktop.</p></div>
+    <div class="method">
+      <ul>
+        <li><b>Data.</b> 4,096 s of 4 kHz strain from each detector, from the Gravitational Wave Open Science Center.</li>
+        <li><b>Noise.</b> Welch spectra from 8 s Hann segments, median-averaged (robust to glitches) and corrected for the median's bias; the 64 s around the event are excluded.</li>
+        <li><b>Templates.</b> IMRPhenomD waveforms (inspiral, merger and ringdown) from LALSimulation, non-spinning, detector-frame masses 20–60 and 15–60 M☉ on a 1 M☉ grid.</li>
+        <li><b>Matched filter.</b> Complex SNR from 30 to 1,024 Hz in the frequency domain; coincidence requires the two detectors' peaks within 10 ms.</li>
+        <li><b>Signal consistency.</b> Allen's χ² test over 16 frequency bands of equal expected SNR, and the reweighted SNR used by the PyCBC search, which leaves signals alone and suppresses glitches.</li>
+        <li><b>Background.</b> Livingston slid against Hanford in 3 s steps, 1,000 times, with the event removed: 44 days of fake coincidences.</li>
+      </ul>
+      <div style="display: grid; gap: 14px; min-width: 0;">
+        <p class="note">This is a teaching pipeline, deliberately simple. It ignores spin, so its masses are biased toward equal values, and its background covers 44 days, not the hundreds of thousands of years of a full search. Even so, the signal stands far above everything the noise produced.</p>
+        <p class="note">This research has made use of data obtained from the Gravitational Wave Open Science Center (gwosc.org), a service of LIGO Laboratory, the LIGO Scientific Collaboration, the Virgo Collaboration and KAGRA. Published values: Abbott et al., <a href="https://doi.org/10.1103/PhysRevLett.116.061102" target="_blank" rel="noopener">PRL 116, 061102 (2016)</a>; GWTC-1, <a href="https://doi.org/10.1103/PhysRevX.9.031040" target="_blank" rel="noopener">PRX 9, 031040 (2019)</a>.</p>
+        <p class="note">Companion piece: <a href="https://claude.ai/artifact/6znP3XzNmc2aKoUFPPKpv7" target="_blank" rel="noopener">How to Photograph a Black Hole</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Analysis and page by Claude (Anthropic) · October 2026</span>
+    <span>Data: LIGO Hanford and Livingston, via GWOSC</span>
+  </footer>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const D = /*DATA*/null;
+</script>
+<script>
+"use strict";
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const C = { ink: css("--ink"), dim: css("--dim"), grid: css("--grid"), rule: css("--rule"), h1: css("--h1"), l1: css("--l1"), amber: css("--amber"), panel: css("--panel") };
+const S = D.summary;
+const tip = document.getElementById("tip");
+function showTip(e, html) { tip.innerHTML = html; tip.hidden = false;
+  const w = tip.offsetWidth, h = tip.offsetHeight; let x = e.clientX + 14, y = e.clientY + 14;
+  if (x + w > innerWidth - 8) x = e.clientX - w - 14; if (y + h > innerHeight - 8) y = e.clientY - h - 14;
+  tip.style.left = x + "px"; tip.style.top = y + "px"; }
+const hideTip = () => { tip.hidden = true; };
+
+// ------------------------------------------------------------------ generic line chart
+function lineChart(cv, o) {
+  // o: {x: [...], series: [{y, color, width, name}], xr, yr, logx, logy, xlab, ylab, xt, yt, fx, fy, marks}
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  const draw = (hx) => {
+    const Wc = cv.clientWidth, Hc = cv.clientHeight || +cv.getAttribute("height");
+    cv.width = Wc * dpr; cv.height = Hc * dpr; cv.style.height = Hc + "px";
+    const g = cv.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, Wc, Hc);
+    const L = 62, R = 12, T = 10, B = 34, pw = Wc - L - R, ph = Hc - T - B;
+    const tx = v => o.logx ? (Math.log10(v) - Math.log10(o.xr[0])) / (Math.log10(o.xr[1]) - Math.log10(o.xr[0])) : (v - o.xr[0]) / (o.xr[1] - o.xr[0]);
+    const ty = v => o.logy ? (Math.log10(v) - Math.log10(o.yr[0])) / (Math.log10(o.yr[1]) - Math.log10(o.yr[0])) : (v - o.yr[0]) / (o.yr[1] - o.yr[0]);
+    const X = v => L + tx(v) * pw, Y = v => T + (1 - ty(v)) * ph;
+    g.font = "11px 'IBM Plex Mono', monospace"; g.fillStyle = C.dim; g.strokeStyle = C.grid; g.lineWidth = 1;
+    for (const v of o.yt) { const y = Math.round(Y(v)) + 0.5; g.beginPath(); g.moveTo(L, y); g.lineTo(L + pw, y); g.stroke(); g.textAlign = "right"; g.textBaseline = "middle"; g.fillText(o.fy(v), L - 6, y); }
+    for (const v of o.xt) { const x = Math.round(X(v)) + 0.5; g.beginPath(); g.moveTo(x, T); g.lineTo(x, T + ph); g.stroke(); g.textAlign = "center"; g.textBaseline = "top"; g.fillText(o.fx(v), x, T + ph + 6); }
+    g.strokeStyle = C.rule; g.beginPath(); g.moveTo(L + 0.5, T); g.lineTo(L + 0.5, T + ph + 0.5); g.lineTo(L + pw, T + ph + 0.5); g.stroke();
+    g.textAlign = "right"; g.textBaseline = "bottom"; g.fillText(o.xlab, L + pw, Hc - 1);
+    g.save(); g.translate(11, T + ph / 2); g.rotate(-Math.PI / 2); g.textAlign = "center"; g.textBaseline = "top"; g.fillText(o.ylab, 0, -8); g.restore();
+    g.save(); g.beginPath(); g.rect(L, T, pw, ph); g.clip();
+    for (const m of (o.marks || [])) { g.strokeStyle = m.color; g.lineWidth = 1.5; const x = X(m.x); g.beginPath(); g.moveTo(x, T); g.lineTo(x, T + ph); g.stroke(); }
+    for (const s of o.series) {
+      g.strokeStyle = s.color; g.lineWidth = s.width || 2; g.lineJoin = "round"; g.beginPath();
+      const xs = s.x || o.x; let first = true;
+      for (let i = 0; i < xs.length; i++) { const yv = s.y[i]; if (!(yv > (o.logy ? 0 : -Infinity))) continue;
+        const px = X(xs[i]), py = Y(yv); if (first) { g.moveTo(px, py); first = false; } else g.lineTo(px, py); }
+      g.stroke();
+    }
+    if (hx != null) { g.strokeStyle = C.dim; g.lineWidth = 1; const x = Math.round(X(hx)) + 0.5; g.beginPath(); g.moveTo(x, T); g.lineTo(x, T + ph); g.stroke(); }
+    g.restore();
+    return { X, Y, L, pw, T, ph, tx };
+  };
+  let geo = draw(null);
+  const inv = px => { const f = (px - geo.L) / geo.pw; return o.logx ? Math.pow(10, Math.log10(o.xr[0]) + f * (Math.log10(o.xr[1]) - Math.log10(o.xr[0]))) : o.xr[0] + f * (o.xr[1] - o.xr[0]); };
+  cv.addEventListener("pointermove", e => {
+    const r = cv.getBoundingClientRect(), px = e.clientX - r.left;
+    if (px < geo.L || px > geo.L + geo.pw) { hideTip(); geo = draw(null); return; }
+    const xv = inv(px), xs = o.x; let lo = 0, hi = xs.length - 1;
+    while (hi - lo > 1) { const m = (lo + hi) >> 1; if (xs[m] < xv) lo = m; else hi = m; }
+    const i = Math.abs(xs[lo] - xv) < Math.abs(xs[hi] - xv) ? lo : hi;
+    geo = draw(xs[i]);
+    showTip(e, `${o.fxTip ? o.fxTip(xs[i]) : o.fx(xs[i])}<br>` + o.series.filter(s => !s.x).map(s => `<span style="color:${s.color}">■</span> ${s.name}: ${o.fyTip ? o.fyTip(s.y[i]) : o.fy(s.y[i])}`).join("<br>"));
+  });
+  cv.addEventListener("pointerleave", () => { hideTip(); geo = draw(null); });
+  addEventListener("resize", () => { geo = draw(null); });
+  return { redraw: (no) => { Object.assign(o, no || {}); geo = draw(null); } };
+}
+const ms = v => (v * 1000).toFixed(0) + " ms";
+const range = (a, b, s) => { const o = []; for (let v = a; v <= b + 1e-9; v += s) o.push(+v.toFixed(6)); return o; };
+
+// ------------------------------------------------------------------ hero: Q-transform + audio
+const Q = (() => {
+  const cv = document.getElementById("q"), q = D.q;
+  const raw = Uint8Array.from(atob(q.img), c => c.charCodeAt(0));
+  const [nf, nt] = q.shape;
+  const ramp = x => { // semantic heat: surface -> ember -> amber -> warm white (sequential, with legend)
+    const stops = [[12, 17, 25], [107, 61, 18], [255, 181, 71], [255, 241, 214]];
+    const f = Math.min(0.999, Math.max(0, x)) * (stops.length - 1), i = Math.floor(f), t = f - i;
+    return stops[i].map((v, k) => v + (stops[i + 1][k] - v) * t); };
+  const img = document.createElement("canvas"); img.width = nt; img.height = nf;
+  const id = img.getContext("2d").createImageData(nt, nf);
+  for (let i = 0; i < nf; i++) for (let j = 0; j < nt; j++) {
+    const v = raw[i * nt + j] / 255, [r, g, b] = ramp(Math.sqrt(v));
+    const k = 4 * ((nf - 1 - i) * nt + j); id.data[k] = r; id.data[k + 1] = g; id.data[k + 2] = b; id.data[k + 3] = 255; }
+  img.getContext("2d").putImageData(id, 0, 0);
+  let playT = null;
+  function draw() {
+    const dpr = Math.min(devicePixelRatio || 1, 2), W = cv.clientWidth, H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    const g = cv.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const L = 48, B = 26, T = 8, R = 10, pw = W - L - R, ph = H - T - B;
+    g.fillStyle = C.panel; g.fillRect(0, 0, W, H);
+    g.imageSmoothingEnabled = true; g.imageSmoothingQuality = "high"; g.drawImage(img, L, T, pw, ph);
+    const t0 = q.t[0], t1 = q.t[q.t.length - 1], f0 = q.f[0], f1 = q.f[q.f.length - 1];
+    const X = t => L + (t - t0) / (t1 - t0) * pw, Y = f => T + (1 - Math.log(f / f0) / Math.log(f1 / f0)) * ph;
+    g.font = "11px 'IBM Plex Mono', monospace"; g.fillStyle = C.dim; g.textAlign = "right"; g.textBaseline = "middle";
+    for (const f of [30, 50, 100, 200, 400]) { if (f < f0 || f > f1) continue; g.fillText(f + " Hz", L - 6, Y(f)); g.strokeStyle = "rgba(236,230,218,0.08)"; g.beginPath(); g.moveTo(L, Y(f) + 0.5); g.lineTo(L + pw, Y(f) + 0.5); g.stroke(); }
+    g.textAlign = "center"; g.textBaseline = "top";
+    for (const t of [-0.6, -0.4, -0.2, 0, 0.2]) g.fillText((t > 0 ? "+" : "") + t.toFixed(1) + " s", X(t), T + ph + 7);
+    // label the chirp
+    g.fillStyle = C.ink; g.textAlign = "left"; g.textBaseline = "middle"; g.font = "13px 'Atkinson Hyperlegible', sans-serif";
+    if (W > 640) g.fillText("the chirp: 35 → 250 Hz in 0.2 s", X(0.05), Y(70));
+    if (playT != null && playT >= t0 && playT <= t1) { g.strokeStyle = C.ink; g.lineWidth = 1.5; g.beginPath(); g.moveTo(X(playT), T); g.lineTo(X(playT), T + ph); g.stroke(); }
+  }
+  draw(); addEventListener("resize", draw);
+  // audio: clips are 0.4 s pad + data from -2.0 s to +0.3 s + 0.4 s pad
+  const audio = {}; for (const k of ["data_H1_true", "data_H1_shift400", "template_H1_true", "template_H1_shift400"]) { const a = new Audio(`audio/${k}.mp3`); a.preload = "auto"; audio[k] = a; }
+  let shift = true, cur = null, raf = 0;
+  function tick() { if (!cur || cur.paused) { playT = null; draw(); return; } playT = cur.currentTime - 0.4 - 2.0 - 0.03; draw(); raf = requestAnimationFrame(tick); }
+  function play(kind, btn) {
+    Object.values(audio).forEach(a => { a.pause(); a.currentTime = 0; });
+    cur = audio[`${kind}_H1_${shift ? "shift400" : "true"}`];
+    document.querySelectorAll(".player .btn").forEach(b => b.setAttribute("aria-pressed", b === btn));
+    cur.play().then(() => { cancelAnimationFrame(raf); tick(); }).catch(() => {});
+    cur.onended = () => { btn.setAttribute("aria-pressed", "false"); playT = null; draw(); };
+  }
+  document.getElementById("play-data").addEventListener("click", e => play("data", e.currentTarget));
+  document.getElementById("play-tmpl").addEventListener("click", e => play("template", e.currentTarget));
+  const pb = document.getElementById("pitch");
+  pb.addEventListener("click", () => { shift = !shift; pb.setAttribute("aria-pressed", shift); pb.textContent = shift ? "pitch +400 Hz" : "true pitch"; });
+  return { draw };
+})();
+
+// ------------------------------------------------------------------ plate I: raw vs whitened, ASD
+(() => {
+  const tr = D.trace, rw = D.raw;
+  const rawIdx = rw.t.map((t, i) => [t, i]).filter(([t]) => t >= tr.t[0] && t <= tr.t[tr.t.length - 1]).map(([, i]) => i);
+  const rx = rawIdx.map(i => rw.t[i]), ry = rawIdx.map(i => rw.h[i] * 1e21);
+  const rmax = Math.max(...ry.map(Math.abs));
+  const rawOpts = { x: rx, series: [{ y: ry, color: C.h1, width: 1.5, name: "strain" }], xr: [tr.t[0], tr.t[tr.t.length - 1]],
+    yr: [-rmax * 1.1, rmax * 1.1], xlab: "time from merger", ylab: "strain × 10²¹", xt: [-0.3, -0.2, -0.1, 0], yt: niceTicks(-rmax, rmax),
+    fx: v => (v > 0 ? "+" : "") + v.toFixed(1) + " s", fxTip: v => (v * 1000).toFixed(1) + " ms", fy: v => (+v.toPrecision(3)).toString() };
+  const whiteOpts = { x: tr.t, series: [{ y: tr.H, color: C.h1, width: 1.5, name: "whitened" }], xr: rawOpts.xr, yr: [-4, 4],
+    xlab: "time from merger", ylab: "whitened strain (σ)", xt: rawOpts.xt, yt: [-4, -2, 0, 2, 4], fx: rawOpts.fx, fxTip: rawOpts.fxTip, fy: v => v.toFixed(1) };
+  const ch = lineChart(document.getElementById("c-raw"), Object.assign({}, rawOpts));
+  const b = document.getElementById("t-white"); let white = false;
+  b.addEventListener("click", () => { white = !white; b.setAttribute("aria-pressed", white);
+    document.getElementById("raw-title").textContent = white ? "Hanford strain, whitened, 35–350 Hz" : "Hanford strain, as recorded";
+    ch.redraw(white ? whiteOpts : rawOpts); });
+  const a = D.asd;
+  lineChart(document.getElementById("c-asd"), { x: a.f, series: [{ y: a.H, color: C.h1, width: 1.5, name: "Hanford" }, { y: a.L, color: C.l1, width: 1.5, name: "Livingston" },
+      { y: a.hc.map((v, i) => a.f[i] >= 20 ? v : NaN), color: C.ink, width: 2, name: "signal" }],
+    xr: [15, 2000], yr: [3e-24, 3e-20], logx: true, logy: true, xlab: "frequency (Hz)", ylab: "strain / √Hz", xt: [20, 50, 100, 200, 500, 1000],
+    yt: [1e-23, 1e-22, 1e-21, 1e-20], fx: v => String(v), fxTip: v => v.toFixed(0) + " Hz", fy: v => "1e" + Math.round(Math.log10(v)), fyTip: v => isFinite(v) ? v.toExponential(2) : "–" });
+})();
+function niceTicks(lo, hi) { const span = hi - lo, step = Math.pow(10, Math.floor(Math.log10(span / 4))); const m = [1, 2, 5, 10].find(k => span / (k * step) <= 6) * step;
+  const out = []; for (let v = Math.ceil(lo / m) * m; v <= hi + 1e-12; v += m) out.push(+v.toFixed(10)); return out; }
+
+// ------------------------------------------------------------------ plate II: bank map, match, SNR
+(() => {
+  const bank = D.bank, cv = document.getElementById("c-bank");
+  const snrMax = Math.max(...bank.map(b => b[2])), snrMin = Math.min(...bank.map(b => b[2]));
+  const seq = ["#184f95", "#1c5cab", "#256abf", "#3987e5", "#6da7ec", "#9ec5f4", "#cde2fb"];  // validated one-hue ramp, dark surface
+  const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  const col = v => { const f = Math.max(0, Math.min(0.999, (v - snrMin) / (snrMax - snrMin))) * (seq.length - 1), i = Math.floor(f), t = f - i;
+    const a = hex(seq[i]), b = hex(seq[i + 1]); return `rgb(${a.map((x, k) => Math.round(x + (b[k] - x) * t)).join(",")})`; };
+  const best = bank.reduce((a, b) => b[2] > a[2] ? b : a);
+  let sel = best, hover = null, geo;
+  const mc = (a, b) => Math.pow(a * b, 0.6) / Math.pow(a + b, 0.2);
+  function draw() {
+    const dpr = Math.min(devicePixelRatio || 1, 2), W = cv.clientWidth, H = +cv.getAttribute("height");
+    cv.width = W * dpr; cv.height = H * dpr; cv.style.height = H + "px";
+    const g = cv.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, W, H);
+    const L = 46, R = 70, T = 8, B = 34, pw = W - L - R, ph = H - T - B;
+    const cw = pw / 41, chh = ph / 46;
+    const X = m1 => L + (m1 - 20) * cw, Y = m2 => T + ph - (m2 - 15 + 1) * chh;
+    for (const [m1, m2, s] of bank) { g.fillStyle = col(s); g.fillRect(X(m1) + 0.5, Y(m2) + 0.5, cw - 1, chh - 1); }
+    const ring = (b, c, w) => { g.strokeStyle = c; g.lineWidth = w; g.strokeRect(X(b[0]) - 1, Y(b[1]) - 1, cw + 1, chh + 1); };
+    ring(best, C.amber, 2); if (sel !== best) ring(sel, C.ink, 2); if (hover) ring(hover, C.ink, 1);
+    g.font = "11px 'IBM Plex Mono', monospace"; g.fillStyle = C.dim; g.textAlign = "center"; g.textBaseline = "top";
+    for (const m of [20, 30, 40, 50, 60]) g.fillText(m, X(m) + cw / 2, T + ph + 6);
+    g.textAlign = "right"; g.textBaseline = "middle"; for (const m of [15, 30, 45, 60]) g.fillText(m, L - 6, Y(m) + chh / 2);
+    g.textAlign = "right"; g.textBaseline = "bottom"; g.fillText("heavier mass m₁ (M☉)", L + pw, H - 1);
+    g.save(); g.translate(10, T + ph / 2); g.rotate(-Math.PI / 2); g.textAlign = "center"; g.textBaseline = "top"; g.fillText("lighter mass m₂ (M☉)", 0, -6); g.restore();
+    // scale legend
+    const lx = L + pw + 22, lh = ph * 0.7, ly = T + 10;
+    for (let k = 0; k < lh; k++) { g.fillStyle = col(snrMin + (snrMax - snrMin) * (1 - k / lh)); g.fillRect(lx, ly + k, 10, 1); }
+    g.fillStyle = C.dim; g.textAlign = "left"; g.textBaseline = "middle";
+    g.fillText(snrMax.toFixed(1), lx + 14, ly + 2); g.fillText(snrMin.toFixed(1), lx + 14, ly + lh - 2); g.fillText("SNR", lx - 2, ly + lh + 14);
+    g.font = "12px 'Atkinson Hyperlegible', sans-serif"; g.textAlign = "left"; g.textBaseline = "middle";
+    const lbl = `best ${best[0]}+${best[1]} M☉`, lw = g.measureText(lbl).width, lxx = X(best[0]) - lw - 14, lyy = Y(best[1]) - 14;
+    g.fillStyle = "rgba(6,8,13,0.85)"; g.beginPath(); g.roundRect(lxx - 6, lyy - 10, lw + 12, 20, 4); g.fill();
+    g.fillStyle = C.ink; g.fillText(lbl, lxx, lyy);
+    geo = { X, Y, cw, chh, L, T, pw, ph };
+  }
+  const pick = e => { const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    const m1 = Math.floor((x - geo.L) / geo.cw) + 20, m2 = Math.floor((geo.T + geo.ph - y) / geo.chh) + 15 - 1 + 1;
+    return bank.find(b => b[0] === m1 && b[1] === m2) || null; };
+  cv.addEventListener("pointermove", e => { const b = pick(e); hover = b; draw();
+    if (b) showTip(e, `m₁ ${b[0]} M☉ · m₂ ${b[1]} M☉<br>chirp mass ${mc(b[0], b[1]).toFixed(1)} M☉<br>network SNR <b>${b[2].toFixed(2)}</b>`); else hideTip(); });
+  cv.addEventListener("pointerleave", () => { hover = null; hideTip(); draw(); });
+  cv.addEventListener("click", e => { const b = pick(e); if (b) { sel = b; draw(); match.update(b); } });
+  cv.addEventListener("keydown", e => { const d = { ArrowRight: [1, 0], ArrowLeft: [-1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] }[e.key]; if (!d) return;
+    e.preventDefault(); const b = bank.find(x => x[0] === sel[0] + d[0] && x[1] === sel[1] + d[1]); if (b) { sel = b; draw(); match.update(b); } });
+  draw(); addEventListener("resize", draw);
+  // matched template overlay
+  const tr = D.trace, ov = D.overlays;
+  const tHalf = tr.t.filter((_, i) => i % 2 === 0);
+  const nearestOverlay = b => ov.reduce((a, o) => Math.hypot(o.m1 - b[0], o.m2 - b[1]) < Math.hypot(a.m1 - b[0], a.m2 - b[1]) ? o : a);
+  const opts = { x: tr.t, series: [{ y: tr.H, color: C.h1, width: 1.2, name: "data" }, { x: tr.t, y: tr.mH, color: C.ink, width: 2, name: "template" }],
+    xr: [-0.12, 0.05], yr: [-4, 4], xlab: "time from merger", ylab: "σ", xt: [-0.1, -0.05, 0, 0.05], yt: [-4, -2, 0, 2, 4],
+    fx: v => (v > 0 ? "+" : "") + (v * 1000).toFixed(0) + " ms", fxTip: v => (v * 1000).toFixed(1) + " ms", fy: v => v.toFixed(1) };
+  const mchart = lineChart(document.getElementById("c-match"), opts);
+  const match = { update(b) {
+    const isBest = b === best;
+    const o = isBest ? null : nearestOverlay(b);
+    const series = [{ y: tr.H, color: C.h1, width: 1.2, name: "data" }, isBest ? { x: tr.t, y: tr.mH, color: C.ink, width: 2, name: "template" } : { x: tHalf, y: o.w, color: C.ink, width: 2, name: "template" }];
+    document.getElementById("match-title").textContent = isBest ? `Hanford data vs best template (${b[0]}+${b[1]} M☉)` : `Hanford data vs ${o.m1}+${o.m2} M☉ template · Hanford SNR ${o.snr}`;
+    mchart.redraw({ series }); } };
+  const s = D.snr;
+  lineChart(document.getElementById("c-snr"), { x: s.t, series: [{ y: s.H, color: C.h1, width: 1.5, name: "Hanford" }, { y: s.L, color: C.l1, width: 1.5, name: "Livingston" }],
+    xr: [-0.1, 0.1], yr: [0, 22], xlab: "time from 09:50:45.4 UTC", ylab: "SNR", xt: [-0.1, -0.05, 0, 0.05, 0.1], yt: [0, 5, 10, 15, 20],
+    fx: v => (v > 0 ? "+" : "") + (v * 1000).toFixed(0) + " ms", fxTip: v => (v * 1000).toFixed(1) + " ms", fy: v => v.toFixed(0), fyTip: v => v.toFixed(2) });
+})();
+
+// ------------------------------------------------------------------ plate III: both detectors, background, numbers
+(() => {
+  const tr = D.trace, dt = S.dt_ms / 1000;
+  const xL = tr.t.map(t => t + dt), yL = tr.L.map(v => -v);
+  lineChart(document.getElementById("c-both"), { x: tr.t, series: [{ y: tr.H, color: C.h1, width: 1.5, name: "Hanford" }, { x: xL, y: yL, color: C.l1, width: 1.5, name: "Livingston" }],
+    xr: [-0.12, 0.05], yr: [-4, 4], xlab: "time from merger (Hanford)", ylab: "σ", xt: [-0.1, -0.05, 0, 0.05], yt: [-4, -2, 0, 2, 4],
+    fx: v => (v > 0 ? "+" : "") + (v * 1000).toFixed(0) + " ms", fxTip: v => (v * 1000).toFixed(1) + " ms", fy: v => v.toFixed(1) });
+  // background histogram
+  const X2 = D.chisq, bg = X2.loudest_raw, bgr = X2.loudest_reweighted, obs = S.snr_network, obsR = X2.event_network_newsnr;
+  const cv = document.getElementById("c-bg"), w = 0.5, lo = 4, hi = 26, nb = (hi - lo) / w;
+  const hist = arr => { const c = new Array(nb).fill(0); for (const v of arr) { const k = Math.floor((v - lo) / w); if (k >= 0 && k < nb) c[k]++; } return c; };
+  const counts = hist(bg), countsR = hist(bgr);
+  const RAW = "#6c7484", REW = "#199e70";
+  let hov = -1, geo;
+  function draw() {
+    const dpr = Math.min(devicePixelRatio || 1, 2), W = cv.clientWidth, H = +cv.getAttribute("height");
+    cv.width = W * dpr; cv.height = H * dpr; cv.style.height = H + "px";
+    const g = cv.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, W, H);
+    const L = 46, R = 12, T = 22, B = 34, pw = W - L - R, ph = H - T - B, cmax = Math.max(...counts, ...countsR);
+    const yTop = Math.ceil(cmax / 250) * 250;  // round ticks every yTop/4
+    const X = v => L + (v - lo) / (hi - lo) * pw, Y = c => T + ph - c / yTop * ph;
+    g.font = "11px 'IBM Plex Mono', monospace"; g.fillStyle = C.dim; g.strokeStyle = C.grid; g.lineWidth = 1;
+    for (let c = 0; c <= yTop; c += yTop / 4) { const y = Math.round(Y(c)) + 0.5; g.beginPath(); g.moveTo(L, y); g.lineTo(L + pw, y); g.stroke(); g.textAlign = "right"; g.textBaseline = "middle"; g.fillText(c, L - 6, y); }
+    g.textAlign = "center"; g.textBaseline = "top"; for (const v of [6, 10, 14, 18, 22, 26]) g.fillText(v, X(v), T + ph + 6);
+    g.textAlign = "right"; g.textBaseline = "bottom"; g.fillText("loudest network SNR in a slide", L + pw, H - 1);
+    const bw = pw / nb;
+    const bars = (cs, colr) => cs.forEach((c, k) => { if (!c) return; g.fillStyle = colr; g.globalAlpha = k === hov ? 1 : 0.9;
+      const x = L + k * bw + 1, y = Y(c), hgt = T + ph - y, rr = Math.min(4, (bw - 2) / 2);
+      g.beginPath(); g.roundRect(x, y, bw - 2, Math.max(hgt, 1), [rr, rr, 0, 0]); g.fill(); g.globalAlpha = 1; });
+    bars(counts, RAW); bars(countsR, REW);
+    g.strokeStyle = C.amber; g.lineWidth = 2; const xo = X(obs); g.beginPath(); g.moveTo(xo, T - 6); g.lineTo(xo, T + ph); g.stroke();
+    g.fillStyle = C.ink; g.textAlign = "right"; g.textBaseline = "top"; g.font = "12px 'Atkinson Hyperlegible', sans-serif"; g.fillText(`GW150914: ${obs.toFixed(1)} (${obsR.toFixed(1)} after χ²)`, xo - 6, T - 8);
+    geo = { L, pw, bw };
+  }
+  cv.addEventListener("pointermove", e => { const r = cv.getBoundingClientRect(), k = Math.floor((e.clientX - r.left - geo.L) / geo.bw);
+    hov = k >= 0 && k < nb ? k : -1; draw();
+    if (hov >= 0) showTip(e, `SNR ${(lo + hov * w).toFixed(1)}–${(lo + (hov + 1) * w).toFixed(1)}<br><span style="color:${RAW}">■</span> raw: ${counts[hov]} slides<br><span style="color:${REW}">■</span> after χ²: ${countsR[hov]} slides`); else hideTip(); });
+  cv.addEventListener("pointerleave", () => { hov = -1; hideTip(); draw(); });
+  draw(); addEventListener("resize", draw);
+  const days = X2.live_days, gl = X2.loudest_offsource_L1;
+  document.getElementById("bg-note").textContent = `Sliding Livingston against Hanford by multiples of 3 s destroys any real coincidence but keeps each detector's noise, glitches included. On raw SNR, almost every slide is dominated by one Livingston glitch ${Math.abs(gl.t).toFixed(0)} s before the event (single-detector SNR ${gl.snr.toFixed(1)}). The χ² test asks whether the SNR builds up across 16 frequency bands the way the template predicts: the glitch fails badly (χ² per degree of freedom ${gl.chi2r.toFixed(1)}), the event passes (${X2.event_H1.chi2r.toFixed(2)} at Hanford, ${X2.event_L1.chi2r.toFixed(2)} at Livingston). After reweighting, the loudest noise coincidence in ${days.toFixed(0)} days of fake data is ${X2.max_reweighted.toFixed(1)}; GW150914 stays at ${obsR.toFixed(1)}.`;
+  const tiles = [[obs.toFixed(1), "network signal-to-noise ratio"], [`${S.dt_ms.toFixed(1)} ms`, "Livingston heard it first; light needs up to 10 ms"],
+    [`${S.chirp_mass_median.toFixed(1)} M☉`, `chirp mass at the detectors (90%: ${S.chirp_mass_90[0].toFixed(1)}–${S.chirp_mass_90[1].toFixed(1)})`], [`${X2.max_reweighted.toFixed(1)}`, `loudest noise coincidence in ${days.toFixed(0)} days, after χ²`]];
+  document.getElementById("tiles").innerHTML = tiles.map(([v, k]) => `<div class="tile"><span class="v">${v}</span><span class="k">${k}</span></div>`).join("");
+  const rows = [
+    ["Network SNR", obs.toFixed(1), "24"], ["Hanford SNR", S.snr_H1.toFixed(1), "about 20"], ["Livingston SNR", S.snr_L1.toFixed(1), "about 13"],
+    ["Signal consistency, χ² per d.o.f.", `${X2.event_H1.chi2r.toFixed(2)} Hanford · ${X2.event_L1.chi2r.toFixed(2)} Livingston`, "consistent with a signal (about 1)"],
+    ["Arrival difference", `${S.dt_ms.toFixed(1)} ms, Livingston first`, "6.9 ms (+0.5 / −0.4)"],
+    ["Chirp mass at the detectors", `${S.chirp_mass_median.toFixed(1)} M☉ (${S.chirp_mass_90[0].toFixed(1)}–${S.chirp_mass_90[1].toFixed(1)})`, "about 31 M☉ (28.6 in the source frame, z ≈ 0.09)"],
+    ["Masses", `${S.best_m1}+${S.best_m2} M☉ at the detectors, non-spinning bank`, "36 + 29 M☉ in the source frame"],
+    ["False-alarm rate", `below 1 per ${days.toFixed(0)} days`, "below 1 per 203,000 years"]];
+  document.getElementById("cmp").innerHTML = rows.map(([a, b, c]) => `<tr><td>${a}</td><td class="v">${b}</td><td class="v">${c}</td></tr>`).join("");
+})();
+</script>

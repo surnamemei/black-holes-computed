@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+# large or regenerable outputs (the master film is published as a GitHub Release asset)
+film/out/
+gw150914/out/
+gw150914/data/
+*.part.mp4
+web/dist/

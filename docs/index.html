@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Black Holes, Computed</title>
+<meta name="description" content="A short film and three interactive instruments about seeing and hearing black holes, computed from general relativity and public data.">
+<meta property="og:title" content="Black Holes, Computed">
+<meta property="og:description" content="A short film and three interactive instruments about seeing and hearing black holes, computed from general relativity and public data.">
+<meta property="og:image" content="https://surnamemei.github.io/black-holes-computed/photograph/poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Layout: the same observatory notebook as the two pages it introduces; two plates side by side. */
+:root {
+  --void: #06080d; --rule: #1d2532; --ink: #ece6da; --dim: #8f97a7; --amber: #ffb547; --cyan: #63d4ff;
+  --f-display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --f-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+html { background: var(--void); }
+body { margin: 0; background: var(--void); color: var(--ink); font: 400 1.02rem/1.6 var(--f-body); padding-inline: max(16px, 3vw); padding-block: 0 48px; }
+img { max-width: 100%; display: block; }
+a { color: var(--cyan); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+.wrap { max-width: 1180px; margin-inline: auto; display: grid; gap: 34px; }
+header { padding-block: 40px 0; display: grid; gap: 14px; }
+.eyebrow { font: 500 0.84rem/1.3 var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); }
+h1, h2 { font-family: var(--f-display); font-weight: 400; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.6rem, 6vw, 4.8rem); line-height: 1; }
+h2 { font-size: 1.9rem; line-height: 1.1; }
+.lede { max-width: 64ch; margin: 0; font-size: 1.08rem; }
+.plates { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+a.plate { display: grid; gap: 12px; color: var(--ink); text-decoration: none; border-top: 1px solid var(--rule); padding-top: 16px; }
+a.plate img { aspect-ratio: 16 / 7; object-fit: cover; border: 1px solid var(--rule); width: 100%; }
+a.plate p { margin: 0; color: var(--dim); max-width: 56ch; }
+a.plate .go { font: 500 0.86rem/1 var(--f-mono); color: var(--amber); letter-spacing: 0.04em; }
+a.plate:hover h2 { text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 6px; }
+.links { display: flex; flex-wrap: wrap; gap: 10px 26px; border-top: 1px solid var(--rule); padding-top: 16px; font-size: 0.95rem; }
+.note { color: var(--dim); font-size: 0.9rem; max-width: 72ch; margin: 0; }
+@media (max-width: 760px) { .plates { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">A film and three instruments</div>
+    <h1>Black Holes, Computed</h1>
+    <p class="lede">Two ways we know black holes are real: the first picture, made by a telescope the size of the Earth, and the first sound, heard by two detectors 3,000 km apart. Everything here is computed from general relativity and public data, and checked against exact results.</p>
+  </header>
+  <div class="plates">
+    <a class="plate" href="photograph/">
+      <img src="photograph/poster.jpg" alt="A ray-traced spinning black hole with its glowing accretion disk bent over the top and under the bottom of the shadow">
+      <h2>How to Photograph a Black Hole</h2>
+      <p>A 5½-minute narrated film, a live Kerr ray tracer you can spin and orbit, and a build-your-own Event Horizon Telescope with a working image reconstruction.</p>
+      <span class="go">Open →</span>
+    </a>
+    <a class="plate" href="hear/">
+      <img src="hear/cover.jpg" alt="Time-frequency map of LIGO Hanford data showing the GW150914 chirp rising from about 35 to 250 hertz">
+      <h2>How to Hear Two Black Holes Collide</h2>
+      <p>GW150914 found again in LIGO's raw public data with a from-scratch matched filter: listen to the chirp, explore the template bank, and see why it isn't noise.</p>
+      <span class="go">Open →</span>
+    </a>
+  </div>
+  <div class="links">
+    <a href="https://github.com/surnamemei/black-holes-computed/releases/latest">Download the film (1080p MP4)</a>
+    <a href="https://github.com/surnamemei/black-holes-computed">Source code</a>
+    <a href="https://github.com/surnamemei/black-holes-computed#prior-work">Prior work and credits</a>
+  </div>
+  <p class="note">Written, coded and rendered by Claude (Anthropic) in October 2026. These are simulations and teaching analyses, not results of the Event Horizon Telescope or LIGO collaborations. Gravitational-wave data: the Gravitational Wave Open Science Center.</p>
+</div>
+</body>
+</html>

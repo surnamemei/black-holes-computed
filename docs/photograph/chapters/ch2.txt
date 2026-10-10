@@ -1,0 +1,61 @@
+WEBVTT
+
+00:00:00.250 --> 00:00:05.124
+Everything you will see here was computed
+from Einstein's theory of gravity,
+
+00:00:05.124 --> 00:00:09.124
+by tracing billions of rays of
+light through curved spacetime.
+
+00:00:09.863 --> 00:00:12.934
+Begin with empty space,
+and a field of stars.
+
+00:00:12.934 --> 00:00:14.859
+Now, add a black hole.
+
+00:00:14.859 --> 00:00:17.821
+Its gravity bends the light passing by.
+
+00:00:17.821 --> 00:00:22.734
+Stars behind it are stretched into
+arcs, duplicated, and folded into rings.
+
+00:00:24.524 --> 00:00:27.674
+To see why, follow
+individual rays of light.
+
+00:00:27.674 --> 00:00:31.412
+Rays passing far from the
+black hole bend only slightly.
+
+00:00:31.412 --> 00:00:34.149
+Closer in, they swing around sharply.
+
+00:00:34.794 --> 00:00:38.142
+At 1.5 times the radius
+of the event horizon,
+
+00:00:38.142 --> 00:00:41.967
+light can travel in a circle
+around the black hole.
+
+00:00:41.967 --> 00:00:43.842
+This is the photon sphere.
+
+00:00:43.842 --> 00:00:47.342
+Rays that come any closer
+spiral in, and are lost.
+
+00:00:48.088 --> 00:00:50.613
+So a black hole casts a shadow.
+
+00:00:50.613 --> 00:00:53.488
+And because gravity bends
+light around its edge,
+
+00:00:53.488 --> 00:00:57.738
+the shadow looks 2.5 times wider
+than the event horizon itself.
+

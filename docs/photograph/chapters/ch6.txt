@@ -1,0 +1,44 @@
+WEBVTT
+
+00:00:00.100 --> 00:00:04.168
+But even after a whole night,
+most of that space is empty.
+
+00:00:04.168 --> 00:00:07.881
+Adding up only the ripples we
+measured gives a "dirty image",
+
+00:00:07.881 --> 00:00:10.568
+smeared by the pattern
+of everything we missed.
+
+00:00:11.269 --> 00:00:15.031
+To fill the gaps, we add what
+we know about real images:
+
+00:00:15.031 --> 00:00:18.381
+brightness is never negative,
+and the sky is mostly smooth.
+
+00:00:18.381 --> 00:00:23.594
+Then we search for the simplest image
+that agrees with every measurement.
+
+00:00:24.965 --> 00:00:27.156
+And out of the gaps, a ring appears.
+
+00:00:29.431 --> 00:00:34.981
+Four teams, working independently on
+the real data, all found the same thing:
+
+00:00:34.981 --> 00:00:40.631
+a ring 42 microarcseconds across, brighter
+on one side, around a dark center.
+
+00:00:40.631 --> 00:00:42.881
+Just what Einstein's theory predicts.
+
+00:00:44.492 --> 00:00:49.242
+A shadow, outlined by light that skimmed
+the edge of no return, and escaped.
+

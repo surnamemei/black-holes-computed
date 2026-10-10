@@ -1,0 +1,11 @@
+{
+  "bcrit_error": 2.594756765006423e-08,
+  "shadow_a099_i90_maxdev_M": 0.009915235743934048,
+  "shadow_a099_i90_pixel_M": 0.015000000000000568,
+  "shadow_a09_i17_maxdev_M": 0.009186219370082682,
+  "shadow_a09_i17_pixel_M": 0.015000000000000568,
+  "fp64_fate_agreement": 1.0,
+  "fp64_dir_err_median_deg": 0.000744875018643105,
+  "fp64_dir_err_p99_deg": 0.01275146403562843,
+  "fp64_cross_err_max_M": 0.008174918976230572
+}

@@ -1,0 +1,78 @@
+WEBVTT
+
+00:00:00.741 --> 00:00:03.266
+Real black holes are rarely dark.
+
+00:00:03.266 --> 00:00:07.866
+Gas spiraling inward forms a disk,
+heated by friction until it glows.
+
+00:00:08.482 --> 00:00:11.457
+Look closely, and
+something strange appears.
+
+00:00:11.457 --> 00:00:16.207
+We can see the far side of the disk, which
+should be hidden behind the black hole.
+
+00:00:16.207 --> 00:00:19.682
+Its light is bent up over
+the top, and down underneath.
+
+00:00:20.290 --> 00:00:23.588
+And hugging the shadow
+is a thin, bright ring:
+
+00:00:23.588 --> 00:00:28.188
+light that looped around the black hole,
+once or more, before escaping toward us.
+
+00:00:29.402 --> 00:00:32.149
+But this picture is still too symmetric.
+
+00:00:32.149 --> 00:00:36.199
+Near the black hole, the gas orbits
+at more than half the speed of light.
+
+00:00:36.797 --> 00:00:40.602
+On the side rushing toward
+us, its light is compressed:
+
+00:00:40.602 --> 00:00:42.065
+bluer, and far brighter.
+
+00:00:42.065 --> 00:00:44.477
+On the receding side, it is stretched:
+
+00:00:44.477 --> 00:00:46.302
+redder, and dimmer.
+
+00:00:46.302 --> 00:00:50.902
+Climbing out of the black hole's gravity
+robs every photon of energy, too.
+
+00:00:51.463 --> 00:00:53.459
+The real view is lopsided:
+
+00:00:53.459 --> 00:00:56.472
+one side blazing, the
+other fading into the dark.
+
+00:00:57.869 --> 00:00:59.932
+Black holes can also spin.
+
+00:00:59.932 --> 00:01:03.394
+A spinning black hole drags
+space itself around with it.
+
+00:01:04.031 --> 00:01:07.156
+Light traveling with the
+spin can orbit closer in,
+
+00:01:07.156 --> 00:01:10.256
+while light traveling
+against it is pushed away.
+
+00:01:10.256 --> 00:01:12.481
+The shadow is flattened on one side.
+

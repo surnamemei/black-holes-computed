@@ -1,0 +1,14 @@
+# Tested on Python 3.12, CUDA 13 (RTX 5090). torch must be a CUDA build for your GPU.
+torch==2.14.0
+warp-lang==1.18.0
+numpy==2.5.3
+scipy==1.18.1
+matplotlib==3.11.2
+pillow==12.3.0
+skia-python==144.0.post2
+soundfile==0.14.0
+pyloudnorm==0.2.0
+kokoro==0.9.4
+misaki[en]==0.9.4
+transformers==5.19.0      # Whisper check of the narration
+playwright==1.63.0        # optional: headless-browser tests of the web pages
